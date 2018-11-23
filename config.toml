@@ -1,4 +1,19 @@
 baseURL = "https://zacharyglassman.com/"
 languageCode = "en-us"
 title = "Zachary Glassman"
-theme = "introduction"
+theme = "hallo"
+
+[Author]
+    name = "Zachary Glassman"
+
+[params]
+    [[params.links]]
+        icon = "github"
+        title = "Github"
+        url = "https://github.com/zachglassman"
+
+    [[params.links]]
+        iconset = "fas"
+        icon = "envelope"
+        title = "E-mail"
+        url = "mailto:zach.glassman@gmail.com"
