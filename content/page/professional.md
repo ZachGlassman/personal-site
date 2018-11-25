@@ -10,5 +10,3 @@ What I'm interested in at the moment:
 - Containerized applications and Kubernetes
 - Productionalized machine learning
 - Teaching people to Python
-- Climbing rocks
-- My cat
