@@ -18,7 +18,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Zachary Glassman"
-  description = "Your description"
+  description = "data scientist, cat daddy"
 
   # Link custom assets relative to /static
   custom_css = []
@@ -46,33 +46,16 @@ disqusShortname = ""
       url = "#"
 
     [[params.navigation.links]]
-      name = "Blogs"
-      url = "blogs"
+      name = "Resume"
+      url = "img/resume.pdf"
 
     [[params.navigation.links]]
-      name = "Generic Blog"
-      url = "blogs/ipsum"
+      name = "Professional"
+      url = "page/professional"
 
     [[params.navigation.links]]
-      name = "Elements"
-      url = "elements.html"
-
-    # Add custom links here by uncommenting code below. To remove links just delete
-    # the [[params.navigation.links]] map associated with that link. Copy and paste
-    # code below if you need more links. Buttons work in the same way.
-    # [[params.navigation.links]]
-    #    name = "NameOfLink"
-    #    url = "UrlOfLink"
-
-    # Button Style 1
-    [[params.navigation.button1]]
-      name = "Get Started"
-      url = "blogs"
-
-    # Button Style 2
-    [[params.navigation.button2]]
-      name = "Log In"
-      url = "#"
+      name = "Personal"
+      url = "page/personal"
 
 
   # Banner section
@@ -82,6 +65,7 @@ disqusShortname = ""
     title = "Hi, I'm Zach"
     subtitle = "data scientist, cat daddy, "
     buttonText = "About me"
+    text = "I am a Data Scientist in Residence at the Data Incubator in the lovely San Francisco Bay Area. I instruct people in all sorts of data sciency things ranging from machine learning to python to visualization while also working on software engineering/devops projects."
 
 
   # Tiles Section
@@ -109,9 +93,9 @@ disqusShortname = ""
 
     [[params.tiles.showcase]]
       title = "Personal Interests"
-      subtitle = "Feugiat Amet Tempus"
+      subtitle = "A few things I like to do"
       image = ""
-      url = "blogs/tempus"
+      url = "page/personal"
 
 
   [params.blog]
