@@ -63,7 +63,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, I'm Zach"
-    subtitle = "data scientist, cat daddy, "
+    subtitle = "data scientist, cat dad "
     buttonText = "About me"
     text = "I am a Data Scientist at UBS Asset Management in New York city.  I do a bunch of data sciency things and strive to demystify AI/ML in the workplace."
 
