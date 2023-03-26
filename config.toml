@@ -18,7 +18,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Zachary Glassman"
-  description = "data scientist, cat dad"
+  description = "Data Professional"
 
   # Link custom assets relative to /static
   custom_css = []
@@ -65,7 +65,7 @@ disqusShortname = ""
     title = "Hi, I'm Zach"
     subtitle = "data scientist, cat dad "
     buttonText = "About me"
-    text = "I am a Data Architecture Lead at UBS Asset Management in New York city.  I work in various types of projects from enterprise data architecture to customized data solutions."
+    text = "I am a Data Architecture Lead at UBS Asset Management in New York city.  I work in various types of projects from enterprise data architecture to customized data solutions.  I also teach an introductory Machine Learning course at Stern College for Women."
 
 
   # Tiles Section
