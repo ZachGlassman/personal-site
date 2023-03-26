@@ -18,7 +18,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Zachary Glassman"
-  description = "data scientist, cat dad"
+  description = "Data Professional"
 
   # Link custom assets relative to /static
   custom_css = []
@@ -63,9 +63,9 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, I'm Zach"
-    subtitle = "data scientist, cat dad "
+    subtitle = "data professional"
     buttonText = "About me"
-    text = "I am a Data Scientist at UBS Asset Management in New York city.  I do a bunch of data sciency things and strive to demystify AI/ML in the workplace."
+    text = "I am a Data Architecture Lead at UBS Asset Management in New York city.  I work in various types of projects from enterprise data architecture to customized data solutions.  I also teach an introductory Machine Learning course at Stern College for Women."
 
 
   # Tiles Section
