@@ -1,2 +1,4 @@
 [build]
+  # Static single-page site: no build step required.
+  command = ""
   publish = "."

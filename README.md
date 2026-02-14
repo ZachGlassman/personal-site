@@ -6,8 +6,13 @@ My personal website with some basic information about me.
 
 ## Stack
 
-This site is now a single, static `index.html` file with inline CSS and no framework/runtime dependencies.
+This site is a single, static `index.html` file with inline CSS and no framework/runtime dependencies.
 
 ## Netlify
 
-The included `netlify.toml` publishes the repository root directly, so deployment works as a plain static site.
+This repo includes `netlify.toml` configured for a plain static site:
+
+- `publish = "."` (serve files from the repository root)
+- `command = ""` (no build command)
+
+If your Netlify UI still has an old build command (for example `hugo`), clear it in **Site settings → Build & deploy → Build settings** and redeploy.
