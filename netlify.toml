@@ -1,0 +1,4 @@
+[build]
+  # Build a deployable static folder even if Netlify is configured to expect /public.
+  command = "rm -rf public && mkdir -p public && cp -R index.html img public/"
+  publish = "public"

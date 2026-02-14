@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zachary Glassman</title>
+  <meta name="description" content="Zachary Glassman — data professional." />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(17, 26, 43, 0.86);
+      --text: #e8eefc;
+      --muted: #a9b8d8;
+      --accent: #6ea8ff;
+      --border: rgba(167, 190, 238, 0.25);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(700px 400px at 85% -10%, rgba(110, 168, 255, .22), transparent 62%),
+        linear-gradient(165deg, #08101e 0%, #0b1220 60%, #121d32 100%);
+    }
+
+    .card {
+      width: min(100%, 700px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 3rem);
+      line-height: 1.1;
+    }
+
+    p {
+      margin: .65rem 0 1.4rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    a {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: .6rem 1rem;
+      font-weight: 600;
+      border: 1px solid rgba(180, 200, 240, .45);
+      color: var(--text);
+      background: rgba(20, 29, 48, .65);
+    }
+
+    a.primary {
+      border-color: transparent;
+      color: #071126;
+      background: linear-gradient(135deg, var(--accent), #8abaff);
+    }
+
+    footer {
+      margin-top: 1.3rem;
+      color: #7f92b8;
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Zachary Glassman</h1>
+    <p>Data professional.</p>
+
+    <div class="links">
+      <a class="primary" href="mailto:zach.glassman@gmail.com">Email</a>
+      <a href="https://github.com/zachglassman">GitHub</a>
+      <a href="https://www.linkedin.com/in/zachary-glassman-7088844b/">LinkedIn</a>
+    </div>
+
+    <footer>© <span id="year"></span></footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
