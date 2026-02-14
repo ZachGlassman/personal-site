@@ -4,18 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zachary Glassman</title>
-  <meta name="description" content="Zachary Glassman — data professional in analytics, machine learning, and data systems." />
+  <meta name="description" content="Zachary Glassman — data professional." />
   <style>
     :root {
       --bg: #0b1220;
-      --panel: rgba(17, 26, 43, 0.74);
-      --panel-strong: rgba(20, 31, 52, 0.92);
+      --panel: rgba(17, 26, 43, 0.86);
       --text: #e8eefc;
       --muted: #a9b8d8;
       --accent: #6ea8ff;
-      --accent-2: #63e6be;
-      --border: rgba(167, 190, 238, 0.24);
-      --max: 980px;
+      --border: rgba(167, 190, 238, 0.25);
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     }
 
@@ -23,158 +20,82 @@
 
     body {
       margin: 0;
-      font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--text);
-      line-height: 1.6;
       min-height: 100vh;
-      background:
-        radial-gradient(800px 420px at 90% -10%, rgba(110, 168, 255, .24), transparent 65%),
-        radial-gradient(780px 450px at -5% 20%, rgba(99, 230, 190, .18), transparent 62%),
-        linear-gradient(160deg, #08101e 0%, #0b1220 38%, #111a2d 100%);
       display: grid;
       place-items: center;
-      padding: 1.3rem;
+      padding: 1.25rem;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(700px 400px at 85% -10%, rgba(110, 168, 255, .22), transparent 62%),
+        linear-gradient(165deg, #08101e 0%, #0b1220 60%, #121d32 100%);
     }
 
     .card {
-      width: min(100%, var(--max));
+      width: min(100%, 700px);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(165deg, var(--panel) 0%, var(--panel-strong) 100%);
+      border-radius: 20px;
+      background: var(--panel);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-    }
-
-    .content {
-      padding: clamp(1.3rem, 3vw, 2.2rem);
-      display: grid;
-      gap: 1.3rem;
-    }
-
-    .kicker {
-      margin: 0;
-      color: var(--accent-2);
-      font-weight: 600;
-      font-size: 0.92rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
+      padding: 2rem;
+      text-align: center;
     }
 
     h1 {
-      margin: .22rem 0 .6rem;
-      font-size: clamp(2rem, 6vw, 3.3rem);
-      line-height: 1.08;
-      letter-spacing: .01em;
-    }
-
-    .lede {
       margin: 0;
-      max-width: 65ch;
+      font-size: clamp(2rem, 7vw, 3rem);
+      line-height: 1.1;
+    }
+
+    p {
+      margin: .65rem 0 1.4rem;
       color: var(--muted);
-      font-size: clamp(1rem, 2.2vw, 1.14rem);
+      font-size: 1.05rem;
     }
 
-    .actions {
+    .links {
       display: flex;
-      gap: .75rem;
+      justify-content: center;
+      gap: .7rem;
       flex-wrap: wrap;
-      margin-top: .4rem;
     }
 
-    .btn {
+    a {
       text-decoration: none;
       border-radius: 999px;
-      padding: .65rem 1rem;
+      padding: .6rem 1rem;
       font-weight: 600;
-      border: 1px solid transparent;
-      transition: .2s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #89b9ff);
-      color: #071126;
-    }
-
-    .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.04); }
-
-    .btn-secondary {
+      border: 1px solid rgba(180, 200, 240, .45);
       color: var(--text);
-      border-color: rgba(180, 200, 240, .42);
-      background: rgba(20, 29, 48, .64);
+      background: rgba(20, 29, 48, .65);
     }
 
-    .btn-secondary:hover { border-color: rgba(180, 200, 240, .75); }
-
-    .grid {
-      display: grid;
-      gap: .95rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    a.primary {
+      border-color: transparent;
+      color: #071126;
+      background: linear-gradient(135deg, var(--accent), #8abaff);
     }
-
-    .tile {
-      border: 1px solid rgba(167, 190, 238, .18);
-      border-radius: 14px;
-      padding: .95rem 1rem;
-      background: rgba(13, 22, 38, .52);
-    }
-
-    .tile h2 {
-      margin: 0 0 .35rem;
-      font-size: 1rem;
-      color: #d7e5ff;
-    }
-
-    .tile p,
-    .tile a {
-      margin: 0;
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .tile a:hover { color: var(--accent); }
 
     footer {
-      padding: .85rem 1.5rem 1.3rem;
-      color: #8092b8;
+      margin-top: 1.3rem;
+      color: #7f92b8;
       font-size: .9rem;
-      border-top: 1px solid rgba(167, 190, 238, .14);
     }
   </style>
 </head>
 <body>
-  <article class="card">
-    <div class="content">
-      <header>
-        <p class="kicker">Zachary Glassman</p>
-        <h1>Data professional building practical, reliable systems.</h1>
-        <p class="lede">
-          I focus on turning messy data into clear decisions through analytics,
-          machine learning, and thoughtful engineering.
-        </p>
-      </header>
+  <main class="card">
+    <h1>Zachary Glassman</h1>
+    <p>Data professional.</p>
 
-      <div class="actions">
-        <a class="btn btn-primary" href="mailto:zach.glassman@gmail.com">Get in touch</a>
-        <a class="btn btn-secondary" href="https://github.com/zachglassman">GitHub</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/zachary-glassman-7088844b/">LinkedIn</a>
-      </div>
-
-      <section class="grid" aria-label="Highlights">
-        <div class="tile">
-          <h2>What I do</h2>
-          <p>Analytics, modeling, and data platform work that supports product and business decisions.</p>
-        </div>
-        <div class="tile">
-          <h2>How I work</h2>
-          <p>Pragmatic, collaborative, and focused on building solutions that are useful in production.</p>
-        </div>
-      </section>
+    <div class="links">
+      <a class="primary" href="mailto:zach.glassman@gmail.com">Email</a>
+      <a href="https://github.com/zachglassman">GitHub</a>
+      <a href="https://www.linkedin.com/in/zachary-glassman-7088844b/">LinkedIn</a>
     </div>
-    <footer>
-      © <span id="year"></span> Zachary Glassman
-    </footer>
-  </article>
+
+    <footer>© <span id="year"></span></footer>
+  </main>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
