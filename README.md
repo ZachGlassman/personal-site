@@ -10,9 +10,9 @@ This site is a single, static `index.html` file with inline CSS and no framework
 
 ## Netlify
 
-This repo includes `netlify.toml` configured for a plain static site:
+This repo includes `netlify.toml` configured to avoid the common deploy error:
 
-- `publish = "."` (serve files from the repository root)
-- `command = ""` (no build command)
+- `publish = "public"`
+- Build command copies static files into `public/`
 
-If your Netlify UI still has an old build command (for example `hugo`), clear it in **Site settings → Build & deploy → Build settings** and redeploy.
+That means deploys succeed even if Netlify expects a `public` deploy directory.
