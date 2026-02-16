@@ -117,6 +117,7 @@
 
     const canvas = document.getElementById('pattern');
     const ctx = canvas.getContext('2d');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const randomInRange = (min, max) => min + Math.random() * (max - min);
 
@@ -127,41 +128,63 @@
       return a;
     };
 
-    const drawPattern = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+    const makeFamily = (width, height) => {
+      let a = Math.floor(randomInRange(2, 10));
+      let b = Math.floor(randomInRange(3, 11));
 
+      while (gcd(a, b) !== 1) {
+        a = Math.floor(randomInRange(2, 10));
+        b = Math.floor(randomInRange(3, 11));
+      }
+
+      return {
+        a,
+        b,
+        basePhase: randomInRange(0, Math.PI * 2),
+        phaseVelocity: randomInRange(-0.34, 0.34),
+        centerX: randomInRange(width * 0.18, width * 0.82),
+        centerY: randomInRange(height * 0.18, height * 0.82),
+        radiusX: randomInRange(width * 0.12, width * 0.34),
+        radiusY: randomInRange(height * 0.12, height * 0.3),
+        stroke: `hsla(${Math.floor(randomInRange(195, 240))}, 90%, ${Math.floor(randomInRange(62, 78))}%, ${randomInRange(0.12, 0.22).toFixed(3)})`,
+        lineWidth: randomInRange(0.9, 1.6),
+      };
+    };
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let families = [];
+    const familyCount = 3;
+    const steps = 1400;
+    let animationFrameId = null;
+    const startTime = performance.now();
+
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const regenerateFamilies = () => {
+      families = Array.from({ length: familyCount }, () => makeFamily(width, height));
+    };
+
+    const drawPattern = (elapsedMs = 0) => {
+      const seconds = elapsedMs / 1000;
       ctx.clearRect(0, 0, width, height);
 
-      const familyCount = 3;
-
-      for (let i = 0; i < familyCount; i += 1) {
-        let a = Math.floor(randomInRange(2, 10));
-        let b = Math.floor(randomInRange(3, 11));
-
-        while (gcd(a, b) !== 1) {
-          a = Math.floor(randomInRange(2, 10));
-          b = Math.floor(randomInRange(3, 11));
-        }
-
-        const phase = randomInRange(0, Math.PI * 2);
-        const steps = 1400;
-        const loops = 2 * Math.PI;
-        const centerX = randomInRange(width * 0.18, width * 0.82);
-        const centerY = randomInRange(height * 0.18, height * 0.82);
-        const radiusX = randomInRange(width * 0.12, width * 0.34);
-        const radiusY = randomInRange(height * 0.12, height * 0.3);
-
+      for (const family of families) {
         ctx.beginPath();
 
         for (let step = 0; step <= steps; step += 1) {
-          const t = (step / steps) * loops;
-          const x = centerX + radiusX * Math.sin(a * t + phase);
-          const y = centerY + radiusY * Math.sin(b * t);
+          const t = (step / steps) * (Math.PI * 2);
+          const phase = family.basePhase + family.phaseVelocity * seconds;
+          const x = family.centerX + family.radiusX * Math.sin(family.a * t + phase);
+          const y = family.centerY + family.radiusY * Math.sin(family.b * t - phase * 0.55);
+
           if (step === 0) {
             ctx.moveTo(x, y);
           } else {
@@ -169,17 +192,41 @@
           }
         }
 
-        const lightness = Math.floor(randomInRange(62, 78));
-        const alpha = randomInRange(0.14, 0.24).toFixed(3);
-        ctx.strokeStyle = `hsla(${Math.floor(randomInRange(195, 240))}, 90%, ${lightness}%, ${alpha})`;
-        ctx.lineWidth = randomInRange(0.9, 1.6);
+        ctx.strokeStyle = family.stroke;
+        ctx.lineWidth = family.lineWidth;
         ctx.stroke();
       }
     };
 
-    drawPattern();
-    window.addEventListener('resize', drawPattern);
-    window.addEventListener('click', drawPattern);
+    const animate = (now) => {
+      drawPattern(now - startTime);
+      animationFrameId = window.requestAnimationFrame(animate);
+    };
+
+    const restart = () => {
+      resizeCanvas();
+      regenerateFamilies();
+      drawPattern(0);
+    };
+
+    restart();
+
+    if (!prefersReducedMotion) {
+      animationFrameId = window.requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', restart);
+    window.addEventListener('click', () => {
+      regenerateFamilies();
+      if (prefersReducedMotion) {
+        drawPattern(0);
+      }
+    });
+    window.addEventListener('beforeunload', () => {
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    });
   </script>
 </body>
 </html>
