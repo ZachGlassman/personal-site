@@ -29,6 +29,17 @@
       background:
         radial-gradient(700px 400px at 85% -10%, rgba(110, 168, 255, .22), transparent 62%),
         linear-gradient(165deg, #08101e 0%, #0b1220 60%, #121d32 100%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    #pattern {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .card {
@@ -39,6 +50,8 @@
       box-shadow: var(--shadow);
       padding: 2rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -84,6 +97,8 @@
   </style>
 </head>
 <body>
+  <canvas id="pattern" aria-hidden="true"></canvas>
+
   <main class="card">
     <h1>Zachary Glassman</h1>
     <p>Data professional.</p>
@@ -99,6 +114,72 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const canvas = document.getElementById('pattern');
+    const ctx = canvas.getContext('2d');
+
+    const randomInRange = (min, max) => min + Math.random() * (max - min);
+
+    const gcd = (a, b) => {
+      while (b !== 0) {
+        [a, b] = [b, a % b];
+      }
+      return a;
+    };
+
+    const drawPattern = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      const familyCount = 3;
+
+      for (let i = 0; i < familyCount; i += 1) {
+        let a = Math.floor(randomInRange(2, 10));
+        let b = Math.floor(randomInRange(3, 11));
+
+        while (gcd(a, b) !== 1) {
+          a = Math.floor(randomInRange(2, 10));
+          b = Math.floor(randomInRange(3, 11));
+        }
+
+        const phase = randomInRange(0, Math.PI * 2);
+        const steps = 1400;
+        const loops = 2 * Math.PI;
+        const centerX = randomInRange(width * 0.18, width * 0.82);
+        const centerY = randomInRange(height * 0.18, height * 0.82);
+        const radiusX = randomInRange(width * 0.12, width * 0.34);
+        const radiusY = randomInRange(height * 0.12, height * 0.3);
+
+        ctx.beginPath();
+
+        for (let step = 0; step <= steps; step += 1) {
+          const t = (step / steps) * loops;
+          const x = centerX + radiusX * Math.sin(a * t + phase);
+          const y = centerY + radiusY * Math.sin(b * t);
+          if (step === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        const lightness = Math.floor(randomInRange(62, 78));
+        const alpha = randomInRange(0.14, 0.24).toFixed(3);
+        ctx.strokeStyle = `hsla(${Math.floor(randomInRange(195, 240))}, 90%, ${lightness}%, ${alpha})`;
+        ctx.lineWidth = randomInRange(0.9, 1.6);
+        ctx.stroke();
+      }
+    };
+
+    drawPattern();
+    window.addEventListener('resize', drawPattern);
+    window.addEventListener('click', drawPattern);
   </script>
 </body>
 </html>
